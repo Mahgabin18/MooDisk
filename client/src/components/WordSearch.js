@@ -7,6 +7,7 @@ import axios from 'axios';
 // export default function WordSearch() 
 class WordSearch extends Component
 {
+
     // ref from: https://www.positronx.io/react-checkbox-tutorial-handle-multiple-checkboxes-values/
     // 1) set Checkbox initial state of options
     state = {
@@ -50,12 +51,21 @@ class WordSearch extends Component
     onSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
+        // let navigate = useNavigate();
+        // this.props.navigate("/main");
       }
      
-
+      // const navigate = useNavigate();
+    // PerformNav = () => {  
+    //   this.props.navigate("/main");
+    // }
+      
 
       //render step 
       render() {
+
+        // const navigate = useNavigate();
+
         return (
           <div className="App">
             <h2>What are You Feeling?</h2>
@@ -116,10 +126,24 @@ class WordSearch extends Component
                 </button>
               </div>
             </form>
+             {/* BUTTON TO GO NAVIGATE TO THE MAIN PAGE */}
+            {/* <p>
+                <button onClick={() => this.props.navigate("/main")}>Go to MAIN</button>
+            </p> */}
+            {/* <p>
+              <button onClick={this.props.navigate("/main")}>
+                MAIN PAGE
+              </button>
+            </p> */}
           </div>
         );
       }
     }
+
+// function WithNavigate(props) {
+//   let navigate = useNavigate();
+//   return <WordSearch {...props} navigate={navigate} />
+// }
 
 export default WordSearch;
 

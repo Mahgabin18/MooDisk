@@ -56,6 +56,9 @@ function Login() {
       <p>
         <button onClick={() => navigate("/wordsearch")}>Go to Word Search</button>
       </p>
+      <p>
+        <button onClick={() => navigate("/main")}>Go to MAIN</button>
+      </p>
      </div>
   );
 }
