@@ -52,7 +52,7 @@ function Login() {
          <input type="submit" value="Register" />
       </form>
         
-      {/* BUTTON TO GO NAVIGATE TO THE WORD SEARCH PAGE */}
+      {/* BUTTON TO GO NAVIGATE TO THE WORD SEARCH PAGE & MAIN*/}
       <p>
         <button onClick={() => navigate("/wordsearch")}>Go to Word Search</button>
       </p>
