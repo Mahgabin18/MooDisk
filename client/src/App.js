@@ -8,16 +8,20 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Login from "./components/Login";
+//import Login from "./components/Login";
+import Logins from "./pages/Login";
 import MainPage from "./components/MainPage";
-import WordSearch from "./components/WordSearch"
+import Register from './pages/Register';
+import WordSearch from "./components/WordSearch";
+
 
 
 export default function App() {
 return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>} />
+        <Route exact path="/register" element={<Register/>} />
+        <Route path="/login" element={<Logins/>} />
         <Route path="/wordsearch" element={<WordSearch/>} />
         <Route path="/main" element={<MainPage />} />
       </Routes>
