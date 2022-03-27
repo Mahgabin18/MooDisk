@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import React from "react";
 // import { useState } from 'react'
-// import './App.css';
+// import './App.css'; 
 import {
   BrowserRouter,
   Routes,
@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import Login from "./components/Login";
+import MainPage from "./components/MainPage";
 import WordSearch from "./components/WordSearch"
 
 
@@ -18,10 +19,11 @@ return (
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/wordsearch" element={<WordSearch/>} />
+        <Route path="/main" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
   );
-}
+} 
 
 
 
