@@ -10,9 +10,9 @@ import {
 } from "react-router-dom";
 import Login from "./components/Login";
 import MainPage from "./components/MainPage";
-import WordSearch from "./components/WordSearch"
-
-
+import WordSearch from "./components/WordSearch";
+import QuerySearch from "./components/querySearch";
+import Home from "./components/Home/home"
 export default function App() {
 return (
     <BrowserRouter>
@@ -20,6 +20,9 @@ return (
         <Route path="/" element={<Login/>} />
         <Route path="/wordsearch" element={<WordSearch/>} />
         <Route path="/main" element={<MainPage />} />
+        <Route path="/main2" element={<Home />} />
+        <Route path = "/query" element = {<QuerySearch/>}/>
+
       </Routes>
     </BrowserRouter>
   );
