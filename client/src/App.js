@@ -19,7 +19,7 @@ return (
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/wordsearch" element={<WordSearch/>} />
-        <Route path="/main" element={<MainPage />} />
+        <Route path={`/main`} element={<MainPage />} />
         <Route path="/main2" element={<Home />} />
         <Route path = "/query" element = {<QuerySearch/>}/>
 

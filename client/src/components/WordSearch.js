@@ -4,6 +4,8 @@ import Unsplash, { toJson } from "unsplash-js"; //unplash api import
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import MainPage from './MainPage';
+
+
 //import Link, { LinkedComponent } from 'valuelink';
 //import { Input } from 'valuelink/tags';
 
@@ -36,17 +38,12 @@ class WordSearch extends Component
         isMad: false,
         isExcited: false, 
         isLonely: false,
-        words: []
     };
     // 2) React Checkboxes define onChange Methods 
-     onChangeHappy = () => {
+     onChangeHappy = (event) => {
         this.setState(initialState => ({
           isHappy: !initialState.isHappy,
-          //here?
-          
         }));
-        //or here?
-        // value = {wordInfo.isHappy}
      }
      
     onChangeSad = () => {
@@ -122,7 +119,6 @@ class WordSearch extends Component
                     checked={this.state.isHappy}
                     onChange={this.onChangeHappy}
                     className="form-check-input"
-                    // value = {wordInfo.happy}
                   />
                   Happy
                 </label>
@@ -179,7 +175,10 @@ class WordSearch extends Component
                   Save
                 </button> */}
                 {/* button that links to the main page using link library  */}
-                <Link to="/main" className="btn btn-primary">Save</Link>
+                <Link 
+                  to={"/main"} 
+                  state={this.state}
+                  className="btn btn-primary">Save</Link>
               </div>
             </form>
              {/* BUTTON TO GO NAVIGATE TO THE MAIN PAGE */}

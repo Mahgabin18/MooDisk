@@ -29,6 +29,7 @@ export default function Form() {
     }, 3000);
   }
   const handleChange = event => {
+    console.log("here");
     setFormData({
         name: event.target.name,
         value: event.target.value,
@@ -94,7 +95,13 @@ export default function Form() {
                 Lonely
            </label>
            <br></br>
-           <Link to="/main" className="btn btn-primary">Save</Link>
+           <Link 
+            to={{
+              pathname: "/main", 
+              state: {
+              test: "this is a test",
+              },
+          }} className="btn btn-primary">Save</Link>
 
        </form>
         

@@ -1,8 +1,10 @@
 import ReactDOM from "react-dom";
+import { useLocation } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 import "./styling/MainPage.css";
 import { createApi } from "unsplash-js";
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Emotions from '../ models/Emotions';
 
 //heyy
 //testing
@@ -37,7 +39,7 @@ const PhotoComp = ({ photo }) => {
   );
 };
 
-const Body = () => {
+const Body = (props) => {
   // FROM THE GUIDE: https://www.digitalocean.com/community/tutorials/how-to-build-a-photo-search-app-with-react-using-the-unsplash-api#step-5-setting-state-using-search-query
   // this is tied to the Search Box inputs
   const [query, setQuery] = useState("");
@@ -62,10 +64,12 @@ const Body = () => {
   // MIXTURE OF GUIDE+DEMO+GOOGLEThis calls the api to search for the photos with the search query input
   // make sure this is only called once in the 'onSubmit' so it can only search when the form is submitted
   async function searchPhotos() {
-    api.search
+    console.log(query);
+    await api.search
       .getPhotos({ query: query, orientation: "landscape" })
       .then((result) => {
         setPhotosResponse(result);
+        return result;
       })
       .catch(() => {
         console.log("something went wrong!");
@@ -76,8 +80,21 @@ const Body = () => {
   // DO NOT call the useEffect React Hook inside the return render ; can only be called in the function component aka up here
   // SHOUTOUT STACKOVERFLOW: https://stackoverflow.com/questions/62248741/how-to-apply-useeffect-based-on-form-submission-in-react
   // "If you want fetch data onload of your functional component, you may use useEffect like this :"
-  useEffect(() => {
-    searchPhotos();
+  useEffect(async () => {
+    console.log(props);
+    if(props.emotions){
+      let prevResult = [];
+      props.emotions.forEach(async (emotion) => {
+        console.log("here", emotion);
+        setQuery(emotion);
+        console.log(query);
+        let newResult = await searchPhotos();
+        console.log(newResult);
+        prevResult = prevResult.concat(newResult);
+      })
+      console.log(prevResult);
+      setPhotosResponse(prevResult);
+    }
   }, []);
   // "And you want your fetch call to be triggered with button click :"
   const handleSubmit = (e) => {
@@ -121,7 +138,7 @@ const Body = () => {
         {/* from DEMO */}
         <div className="feed">
           <ul className="columnUl">
-            {data.response.results.map((photo) => (
+            {data.response?.results.map((photo) => (
               <li key={photo.id} className="li">
                 <PhotoComp photo={photo} />
               </li>
@@ -134,9 +151,38 @@ const Body = () => {
 };
 
 const MainPage = () => {
+  const {state} = useLocation();
+  const [words, changeWords] = useState();
+
+  useEffect(async () => {
+    await convertStateToSearchTerms(state);
+  }, [])
+
+  const convertStateToSearchTerms = async (boolStates) => {
+    
+    let boolArr = Object.keys(boolStates).map(key => {
+      return {[key]: boolStates[key]};
+    });
+    let wordArr = [];
+    await boolArr.forEach(element => {
+      if (element.isHappy)
+        wordArr.push(Emotions.happy);
+      else if (element.isSad)
+        wordArr.push(Emotions.sad);
+      else if (element.isMad)
+        wordArr.push(Emotions.mad);
+      else if (element.isExcited)
+        wordArr.push(Emotions.excited);
+      else if (element.isLonely)
+        wordArr.push(Emotions.lonely);
+    });
+
+    changeWords(wordArr);
+  }
+
   return (
     <main className="root">
-      <Body />
+      {words && words.length != 0 && <Body emotions={words}/>}
     </main>
   );
 };
