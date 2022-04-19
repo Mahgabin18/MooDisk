@@ -64,35 +64,53 @@ const Body = (props) => {
   // MIXTURE OF GUIDE+DEMO+GOOGLEThis calls the api to search for the photos with the search query input
   // make sure this is only called once in the 'onSubmit' so it can only search when the form is submitted
   async function searchPhotos() {
-    console.log(query);
-    await api.search
+    api.search
       .getPhotos({ query: query, orientation: "landscape" })
       .then((result) => {
-        setPhotosResponse(result);
-        return result;
+        setPhotosResponse(result.response.results);
       })
       .catch(() => {
         console.log("something went wrong!");
       });
   }
 
+  async function initializeEmotions(emotion){
+    let data = []; 
+    await api.search
+    .getPhotos({ query: emotion, orientation: "landscape" })
+    .then((result) => {
+      data = result.response.results;
+    })
+    .catch(() => {
+      console.log("something went wrong!");
+    });
+    return data;
+  }
+
+  async function randomShuffleArray(inputArr){
+    let shuffledArr = await inputArr
+      .map(value => ({value, sort: Math.random()}))
+      .sort((a,b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    return shuffledArr;
+  }
+
+
   // needed to actually load things in?
   // DO NOT call the useEffect React Hook inside the return render ; can only be called in the function component aka up here
   // SHOUTOUT STACKOVERFLOW: https://stackoverflow.com/questions/62248741/how-to-apply-useeffect-based-on-form-submission-in-react
   // "If you want fetch data onload of your functional component, you may use useEffect like this :"
   useEffect(async () => {
-    console.log(props);
     if(props.emotions){
       let prevResult = [];
-      props.emotions.forEach(async (emotion) => {
-        console.log("here", emotion);
-        setQuery(emotion);
-        console.log(query);
-        let newResult = await searchPhotos();
-        console.log(newResult);
-        prevResult = prevResult.concat(newResult);
-      })
-      console.log(prevResult);
+      for(const emotion of props.emotions){
+        let newResult = await initializeEmotions(emotion);
+        prevResult = prevResult.concat(newResult.filter((item) => 
+          prevResult.findIndex((result) => result.id == item.id) < 0
+        ));
+      }
+      prevResult = await randomShuffleArray(prevResult);
       setPhotosResponse(prevResult);
     }
   }, []);
@@ -138,7 +156,7 @@ const Body = (props) => {
         {/* from DEMO */}
         <div className="feed">
           <ul className="columnUl">
-            {data.response?.results.map((photo) => (
+            {data.map((photo) => (
               <li key={photo.id} className="li">
                 <PhotoComp photo={photo} />
               </li>
