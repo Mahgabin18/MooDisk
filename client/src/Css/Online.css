@@ -1,0 +1,54 @@
+.AboveOnline{
+  position: fixed;
+  right: 1px;
+  width: 360px;
+  z-index: 20;
+}
+
+.Online{
+  position: fixed;
+  margin-top: 52px;
+  top: 0;
+  background: #FFF5EE;
+  width: 360px;
+
+}
+
+.PopUp{
+  position: fixed;
+  margin-left:20px;
+  margin-top: 35px;
+  top: 0;
+  z-index: 30;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+}
+
+.AddToPlay{
+  text-align: left;
+}
+
+.AddButton{
+  position: absolute;
+  margin-right: 1px;
+  top: 2;
+  right: 0;
+  border-width: thin;
+}
+
+.AddMessage{
+  margin: auto;
+}
+.AddParent .AddButton{
+  display: none;
+}
+.AddParent:hover .AddButton{
+  display: inline-block;
+}
+.AddButton .AddMessage{
+  display: none;
+}
+.AddButton:hover .AddMessage{
+  display: inline-block;
+}

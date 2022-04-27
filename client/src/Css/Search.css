@@ -1,0 +1,17 @@
+.SearchPlaylist{
+  padding-top: 40px;
+  visibility: hidden;
+  margin-top: -10px;
+  left:173px;
+  background-color: #E8E8E8;
+  width: 1350px;
+  height: 37px;
+  z-index: 10;
+}
+
+.SearchOnline{
+  position: fixed;
+  right: 207px;
+  margin-top: 27px; /* Negative half of height. */
+  z-index: 20;
+}

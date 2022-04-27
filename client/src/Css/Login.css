@@ -1,0 +1,19 @@
+.Login{
+  text-align: center;
+}
+.Logo{
+  padding-top: 25px;
+  width: 15%;
+}
+
+.TokenLabel{
+  display: block;
+  font-size: 20px;
+}
+.TokenInput{
+  width: 300px;
+}
+
+.Wrong{
+  color: red;
+}

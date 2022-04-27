@@ -1,0 +1,20 @@
+.Playlists{
+  position: fixed;
+  left: 50%;
+  margin-top: 20px; /* Negative half of height. */
+  margin-left: -230px; /* Negative half of width. */
+  z-index: 10;
+}
+
+.PlaylistsContent{
+  max-width: 40ch;
+  border-radius: 0.3em;
+  padding: 0.2em 0.5em;
+  font-size: 1.2rem;
+  background-color: #fff;
+}
+
+.PlaylistLabel{
+  font-weight: bold;
+  font-size: 1.2rem;
+}
