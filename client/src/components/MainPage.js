@@ -1,8 +1,10 @@
 import ReactDOM from "react-dom";
+import { useLocation } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
-import "./styling/MainPage.css";
+//import "./styling/MainPage.css";
 import { createApi } from "unsplash-js";
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Emotions from '../models/Emotions';
 
 //heyy
 //testing
@@ -37,7 +39,7 @@ const PhotoComp = ({ photo }) => {
   );
 };
 
-const Body = () => {
+const Body = (props) => {
   // FROM THE GUIDE: https://www.digitalocean.com/community/tutorials/how-to-build-a-photo-search-app-with-react-using-the-unsplash-api#step-5-setting-state-using-search-query
   // this is tied to the Search Box inputs
   const [query, setQuery] = useState("");
@@ -65,19 +67,52 @@ const Body = () => {
     api.search
       .getPhotos({ query: query, orientation: "landscape" })
       .then((result) => {
-        setPhotosResponse(result);
+        setPhotosResponse(result.response.results);
       })
       .catch(() => {
         console.log("something went wrong!");
       });
   }
 
+  async function initializeEmotions(emotion){
+    let data = []; 
+    await api.search
+    .getPhotos({ query: emotion, orientation: "landscape" })
+    .then((result) => {
+      data = result.response.results;
+    })
+    .catch(() => {
+      console.log("something went wrong!");
+    });
+    return data;
+  }
+
+  async function randomShuffleArray(inputArr){
+    let shuffledArr = await inputArr
+      .map(value => ({value, sort: Math.random()}))
+      .sort((a,b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    return shuffledArr;
+  }
+
+
   // needed to actually load things in?
   // DO NOT call the useEffect React Hook inside the return render ; can only be called in the function component aka up here
   // SHOUTOUT STACKOVERFLOW: https://stackoverflow.com/questions/62248741/how-to-apply-useeffect-based-on-form-submission-in-react
   // "If you want fetch data onload of your functional component, you may use useEffect like this :"
-  useEffect(() => {
-    searchPhotos();
+  useEffect(async () => {
+    if(props.emotions){
+      let prevResult = [];
+      for(const emotion of props.emotions){
+        let newResult = await initializeEmotions(emotion);
+        prevResult = prevResult.concat(newResult.filter((item) => 
+          prevResult.findIndex((result) => result.id == item.id) < 0
+        ));
+      }
+      prevResult = await randomShuffleArray(prevResult);
+      setPhotosResponse(prevResult);
+    }
   }, []);
   // "And you want your fetch call to be triggered with button click :"
   const handleSubmit = (e) => {
@@ -121,7 +156,7 @@ const Body = () => {
         {/* from DEMO */}
         <div className="feed">
           <ul className="columnUl">
-            {data.response.results.map((photo) => (
+            {data.map((photo) => (
               <li key={photo.id} className="li">
                 <PhotoComp photo={photo} />
               </li>
@@ -134,9 +169,38 @@ const Body = () => {
 };
 
 const MainPage = () => {
+  const {state} = useLocation();
+  const [words, changeWords] = useState();
+
+  useEffect(async () => {
+    await convertStateToSearchTerms(state);
+  }, [])
+
+  const convertStateToSearchTerms = async (boolStates) => {
+    
+    let boolArr = Object.keys(boolStates).map(key => {
+      return {[key]: boolStates[key]};
+    });
+    let wordArr = [];
+    await boolArr.forEach(element => {
+      if (element.isHappy)
+        wordArr.push(Emotions.happy);
+      else if (element.isSad)
+        wordArr.push(Emotions.sad);
+      else if (element.isMad)
+        wordArr.push(Emotions.mad);
+      else if (element.isExcited)
+        wordArr.push(Emotions.excited);
+      else if (element.isLonely)
+        wordArr.push(Emotions.lonely);
+    });
+
+    changeWords(wordArr);
+  }
+
   return (
     <main className="root">
-      <Body />
+      {words && words.length != 0 && <Body emotions={words}/>}
     </main>
   );
 };

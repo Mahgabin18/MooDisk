@@ -1,12 +1,34 @@
 import React, { useState, Component } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import Unsplash, { toJson } from "unsplash-js"; //unplash api import 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import MainPage from './MainPage';
 
-// export default function WordSearch() 
+
+//import Link, { LinkedComponent } from 'valuelink';
+//import { Input } from 'valuelink/tags';
+
+
+//const valueArray = []; //initialize empty array
+
+
+
+//export default function WordSearch() 
 class WordSearch extends Component
 {
+    //  Checkboxes = () => {
+    //   const [wordInfo, setWordInfo] = useState("");
+    //   const word = '';
+    // }
+
+    // create an array state to store the word form data
+    //  [wordInfo, setWordInfo] = useState([]);
+    // word = '';
+
+    //  addEntryClick = () => {
+    //   setWordInfo([...wordInfo, word]);
+    // };
 
     // ref from: https://www.positronx.io/react-checkbox-tutorial-handle-multiple-checkboxes-values/
     // 1) set Checkbox initial state of options
@@ -15,22 +37,22 @@ class WordSearch extends Component
         isSad: false,
         isMad: false,
         isExcited: false, 
-        isLonely: false
+        isLonely: false,
     };
     // 2) React Checkboxes define onChange Methods 
-    onChangeHappy = () => {
+     onChangeHappy = (event) => {
         this.setState(initialState => ({
           isHappy: !initialState.isHappy,
         }));
      }
      
-     onChangeSad = () => {
+    onChangeSad = () => {
         this.setState(initialState => ({
           isSad: !initialState.isSad,
         }));
      }
      
-      onChangeMad = () => {
+     onChangeMad = () => {
         this.setState(initialState => ({
           isMad: !initialState.isMad,
         }));
@@ -45,20 +67,40 @@ class WordSearch extends Component
         this.setState(initialState => ({
           isLonely: !initialState.isLonely,
         }));
+
      }
 
+      HandleClick = () =>{ 
+      let navigate = useNavigate();
+      let path = `main`; 
+      navigate(path);
+    };
+    
+    
+    
     //  3) Submit 
-    onSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state);
-        // let navigate = useNavigate();
-        // this.props.navigate("/main");
-      }
+     onSubmit = (e) => {
+      e.preventDefault();
+      
+      // if (this.state.isHappy === true){
+      //   word = 'happy';
+      //   addEntryClick();
+      // }
+
+      console.log("submitted")
+      console.log(this.state);
+      console.log(this.wordInfo);
+      // useNavigate('/main')
+      // let navigate = useNavigate();
+      // this.props.navigate("/main");
+    };
      
       // const navigate = useNavigate();
     // PerformNav = () => {  
     //   this.props.navigate("/main");
     // }
+    
+     
       
 
       //render step 
@@ -66,10 +108,11 @@ class WordSearch extends Component
 
         // const navigate = useNavigate();
 
+
         return (
           <div className="App">
             <h2>What are You Feeling?</h2>
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} > 
               <div className="form-check">
                 <label className="form-check-label">
                   <input type="checkbox"
@@ -86,6 +129,7 @@ class WordSearch extends Component
                     checked={this.state.isSad}
                     onChange={this.onChangeSad}
                     className="form-check-input"
+                    // value = {wordInfo.sad}
                   />
                   Sad
                 </label>
@@ -96,6 +140,7 @@ class WordSearch extends Component
                     checked={this.state.isMad}
                     onChange={this.onChangeMad}
                     className="form-check-input"
+                    // value = {wordInfo.mad}
                   />
                   Mad
                 </label>
@@ -106,6 +151,7 @@ class WordSearch extends Component
                     checked={this.state.isExcited}
                     onChange={this.onChangeExcited}
                     className="form-check-input"
+                    // value = {wordInfo.excited}
                   />
                   Excited
                 </label>
@@ -116,14 +162,23 @@ class WordSearch extends Component
                     checked={this.state.isLonely}
                     onChange={this.onChangeLonely}
                     className="form-check-input"
+                    // value = {wordInfo.lonely}
                   />
                   Lonely
                 </label>
               </div>
               <div className="form-group">
-                <button className="btn btn-success">
+                {/* <button className="btn btn-success">
                   Save
-                </button>
+                </button> */}
+                {/* <button className = "btn" onClick={this.handleClick}>
+                  Save
+                </button> */}
+                {/* button that links to the main page using link library  */}
+                <Link 
+                  to={"/main"} 
+                  state={this.state}
+                  className="btn btn-primary">Save</Link>
               </div>
             </form>
              {/* BUTTON TO GO NAVIGATE TO THE MAIN PAGE */}
@@ -139,6 +194,7 @@ class WordSearch extends Component
         );
       }
     }
+    
 
 // function WithNavigate(props) {
 //   let navigate = useNavigate();
@@ -299,7 +355,6 @@ export default WordSearch;
 // }
 
 /* import React, { useState } from "react";
-
 function WordSearch() {
     
 return (

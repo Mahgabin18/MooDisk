@@ -1,0 +1,57 @@
+.SongsTable{
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  position: sticky;
+  width: 450px;
+  z-index: 0;
+}
+
+.NotFound{
+  font-size: 20px;
+}
+.DelButton{
+  position: absolute;
+  margin-right: 1px;
+  top: 2;
+  right: 0;
+  border-width: thin;
+}
+.SongsButton{
+  width:510px;
+  text-align:left;
+  font-size: 18px;
+}
+.SongsButtonSelected{
+  position:relative;
+  width:510px;
+  text-align:left;
+  font-size: 18px;
+  border-color: #757372;
+  background-color: #D7D7D7;
+  outline: none;
+  left: 10px;
+}
+.ButtonsParent{
+  position: relative;
+
+}
+
+.DelMesage{
+  margin: auto;
+}
+
+.ButtonsParent .DelButton{
+  display: none;
+}
+
+.DelButton .DelMesage{
+  display: none;
+}
+.DelButton:hover .DelMesage{
+  display: inline-block;
+}
+
+.ButtonsParent:hover .DelButton{
+  display: inline-block;
+}
