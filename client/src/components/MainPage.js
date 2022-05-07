@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 import "./styling/MainPage.css";
 import { createApi } from "unsplash-js";
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Emotions from '../ models/Emotions';
+import Emotions from '../models/Emotions';
 
 //heyy
 //testing
@@ -15,9 +15,59 @@ const api = createApi({
   accessKey: "p55OV837XTRngIgJA4phnnQHufPJowmk9Fq7vXaCYes"
 });
 
+const setImageFavoriteStatus = (id, photo) => {
+  const local = localStorage.getItem("favoriteImages"); 
+
+  if(local.length === 0) photo.liked_by_user = false;
+  else{
+    const images = JSON.parse(local);
+    if(images.findIndex(image => image.id === id) != -1){
+      photo.liked_by_user = true;
+    } else{
+      photo.liked_by_user = false;
+    }
+  }
+}
+
+const getLikedPhotos = () => {
+  const local = localStorage.getItem("favoriteImages"); 
+  if(local.length === 0){
+    return [];
+  } else{
+    return JSON.parse(local);
+  }
+}
+
 // This will show the actual photo component and it takes 'photo' as a paremeter which will be given once you click search
 const PhotoComp = ({ photo }) => {
-  const { user, urls } = photo;
+  
+  const { user, urls, id } = photo;
+  const [isAnimating, setOnHoldState] = useState(false);
+  let likedPhotos = getLikedPhotos();
+  setImageFavoriteStatus(id, photo); 
+  const [isClicked, setClickedState] = useState(photo.liked_by_user);
+  
+  // setImageFavoriteStatus(id, photo);
+
+  function handleLikeClick(id, photo){
+    setOnHoldState(false);
+    if(!isClicked){
+      if(!likedPhotos.includes(id)){
+        likedPhotos.push({id: id, urls: photo.urls, user: photo.user, liked_by_user: true});
+      }
+      photo.liked_by_user = true;
+      setClickedState(true);
+    } else if(isClicked){
+      likedPhotos = likedPhotos.filter(lPhoto => lPhoto.id !== id);
+      photo.liked_by_user = false;
+      setClickedState(false);
+    }
+    localStorage.setItem('favoriteImages', JSON.stringify(likedPhotos));
+  }
+
+  function handleMouseHold(){
+    if(!isAnimating) setOnHoldState(true);
+  }
 
   return (
     /*
@@ -25,8 +75,24 @@ const PhotoComp = ({ photo }) => {
       You can avoid issues that break your layouts or potentially optimize your markup rendering time using fragments. However, you should only use them when needed. If you need a wrapper to your JSX for styling, use a div instead. 
     */
     <Fragment>
-      <div>
-        <img className="img" src={urls.regular} />
+      <div className="image-text-container">
+        <div className="image-like-container">
+          <img className="img" src={urls.regular} />
+          <button className="feed-button" onMouseDown={handleMouseHold} onClick={() => handleLikeClick(id, photo)}>
+            {
+              !photo.liked_by_user?
+              <img
+                className={"white-outline feed-logo " + (isAnimating? 'logo-holding': '')}
+                src={require("../images/whiteoutline.png")}
+              />
+              :
+              <img
+                className={"feed-logo " + (isAnimating? 'logo-holding': '')}
+                src={require("../images/redheart.png")}
+              />
+            }
+          </button>
+        </div>
         <a
           className="credit"
           target="_blank"
@@ -46,10 +112,10 @@ const Body = (props) => {
   // FROM DEMO CODE: https://stackblitz.com/edit/unsplash-js-javascript?file=src%2Findex.js
   // this is for the searching the photos with unsplash and the data will be linked to 'photo' in the Body render with .map
   const [data, setPhotosResponse] = useState(null);
-
+  const navigate = useNavigate();
   // useEffect(() => {
   //   async function searchPhotos() {
-  //     api.search
+  //     api.search 
   //       .getPhotos({ query: query, orientation: "landscape" })
   //       .then((result) => {
   //         setPhotosResponse(result);
@@ -102,7 +168,7 @@ const Body = (props) => {
   // SHOUTOUT STACKOVERFLOW: https://stackoverflow.com/questions/62248741/how-to-apply-useeffect-based-on-form-submission-in-react
   // "If you want fetch data onload of your functional component, you may use useEffect like this :"
   useEffect(async () => {
-    if(props.emotions){
+    if(props?.emotions){
       let prevResult = [];
       for(const emotion of props.emotions){
         let newResult = await initializeEmotions(emotion);
@@ -132,38 +198,41 @@ const Body = (props) => {
     );
   } else {
     return (
-      <>
-        <div>
+      <div className="main-page-container">
           {/* from GUIDE */}
-          <form className="form" onSubmit={handleSubmit}>
-            <label className="label" htmlFor="query">
-              {" "}
-              📷
-            </label>
-            <input
-              type="text"
-              name="query"
-              className="input"
-              placeholder={`Try "dog" or "apple"`}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <button type="submit" className="button">
-              Search
+          <div className="main-page-header">
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="form-flex">
+                <input
+                  type="text"
+                  name="query"
+                  className="input"
+                  placeholder={`Try "dog" or "apple"`}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                <label className="label" htmlFor="query">
+                  {" "}
+                  📷
+                </label>
+              </div>
+              <button type="submit" className="button">
+                Search
+              </button>
+            </form>
+            <button className="button-favorite button" onClick={() => navigate("/favorites")}>
+              Favorites
             </button>
-          </form>
-        </div>
+          </div>
         {/* from DEMO */}
         <div className="feed">
-          <ul className="columnUl">
-            {data.map((photo) => (
-              <li key={photo.id} className="li">
-                <PhotoComp photo={photo} />
-              </li>
-            ))}
-          </ul>
+          {data.map((photo) => (
+            <div key={photo.id} className="li">
+              <PhotoComp photo={photo} />
+            </div>
+          ))}
         </div>
-      </>
+      </div>
     );
   }
 };
@@ -177,8 +246,8 @@ const MainPage = () => {
   }, [])
 
   const convertStateToSearchTerms = async (boolStates) => {
-    
-    let boolArr = Object.keys(boolStates).map(key => {
+    if(!boolStates) boolStates = {};
+    let boolArr = Object.keys(boolStates)?.map(key => {
       return {[key]: boolStates[key]};
     });
     let wordArr = [];
@@ -193,6 +262,18 @@ const MainPage = () => {
         wordArr.push(Emotions.excited);
       else if (element.isLonely)
         wordArr.push(Emotions.lonely);
+      else if (element.isDisgust)
+        wordArr.push(Emotions.disgust);
+      else if (element.isPeaceful)
+        wordArr.push(Emotions.peaceful);
+      else if (element.isScared)
+        wordArr.push(Emotions.scared);
+      else if (element.isCrazy)
+        wordArr.push(Emotions.crazy);
+      else if (element.isHungry)
+        wordArr.push(Emotions.hungry);
+      else if (element.isEnergetic)
+        wordArr.push(Emotions.energetic);
     });
 
     changeWords(wordArr);
@@ -201,7 +282,8 @@ const MainPage = () => {
   return (
     <main className="root">
       {words && words.length != 0 && <Body emotions={words}/>}
+      {words && words.length === 0 && <Body emotions={[]}/>}
     </main>
   );
 };
-export default MainPage;
+export {MainPage, PhotoComp};

@@ -9,23 +9,36 @@ import {
   Link
 } from "react-router-dom";
 import Login from "./components/Login";
-import MainPage from "./components/MainPage";
+import { MainPage } from "./components/MainPage";
 import WordSearch from "./components/WordSearch";
 import QuerySearch from "./components/querySearch";
 import Home from "./components/Home/home"
+import FavoritesPage from "./components/FavoritesPage";
 export default function App() {
-return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/wordsearch" element={<WordSearch/>} />
-        <Route path={`/main`} element={<MainPage />} />
-        <Route path="/main2" element={<Home />} />
-        <Route path = "/query" element = {<QuerySearch/>}/>
+  
+  if(!localStorage.getItem('favoriteImages')){
+    localStorage.setItem('favoriteImages', '');
+  } else if(typeof(JSON.parse(localStorage.getItem('favoriteImages'))) != 'object'){
+    localStorage.setItem('favoriteImages', '');
+  } else{
+    let images = JSON.parse(localStorage.getItem('favoriteImages'));
+    if(images[0].urls === undefined || images[0].id === undefined || images[0].user === undefined){
+      localStorage.setItem('favoriteImages', '');
+    }
+  }
 
-      </Routes>
-    </BrowserRouter>
-  );
+  return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login/>} />
+          <Route path="/wordsearch" element={<WordSearch/>} />
+          <Route path={`/main`} element={<MainPage />} />
+          <Route path="/main2" element={<Home />} />
+          <Route path = "/query" element = {<QuerySearch/>}/>
+          <Route path="/favorites" element={<FavoritesPage />}> </Route>
+        </Routes>
+      </BrowserRouter>
+    );
 } 
 
 

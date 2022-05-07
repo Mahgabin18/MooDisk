@@ -38,6 +38,12 @@ class WordSearch extends Component
         isMad: false,
         isExcited: false, 
         isLonely: false,
+        isDisgust: false,
+        isPeaceful: false,
+        isScared: false,
+        isCrazy: false,
+        isHungry: false,
+        isEnergetic: false,
     };
     // 2) React Checkboxes define onChange Methods 
      onChangeHappy = (event) => {
@@ -66,6 +72,42 @@ class WordSearch extends Component
      onChangeLonely = () => {
         this.setState(initialState => ({
           isLonely: !initialState.isLonely,
+        }));
+
+     }
+     onChangeDisgust = () => {
+        this.setState(initialState => ({
+          isDisgust: !initialState.isDisgust,
+        }));
+
+     }
+     onChangePeaceful = () => {
+        this.setState(initialState => ({
+          isPeaceful: !initialState.isPeaceful,
+        }));
+
+     }
+     onChangeScared = () => {
+        this.setState(initialState => ({
+          isScared: !initialState.isScared,
+        }));
+
+     }
+     onChangeCrazy = () => {
+        this.setState(initialState => ({
+          isCrazy: !initialState.isCrazy,
+        }));
+
+     }
+     onChangeHungry = () => {
+        this.setState(initialState => ({
+          isHungry: !initialState.isHungry,
+        }));
+
+     }
+     onChangeEnergetic = () => {
+        this.setState(initialState => ({
+          isEnergetic: !initialState.isEnergetic,
         }));
 
      }
@@ -165,6 +207,72 @@ class WordSearch extends Component
                     // value = {wordInfo.lonely}
                   />
                   Lonely
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isDisgust}
+                    onChange={this.onChangeDisgust}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Disgust
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isPeaceful}
+                    onChange={this.onChangePeaceful}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Peaceful
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isScared}
+                    onChange={this.onChangeScared}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Scared
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isCrazy}
+                    onChange={this.onChangeCrazy}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Crazy
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isHungry}
+                    onChange={this.onChangeHungry}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Hungry
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isEnergetic}
+                    onChange={this.onChangeEnergetic}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Energetic
                 </label>
               </div>
               <div className="form-group">

@@ -1,0 +1,25 @@
+.favorites-container{
+  margin-left: 2rem;
+  margin-right: 2rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.favorites-header-container{
+  width: 50%;
+  display: flex;
+  align-items: baseline;
+  color: #04A1C8;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.favorites-header {
+  font-size: 4.5rem;
+}
+
+.favorites-subtitle{
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
