@@ -9,6 +9,8 @@ import {
   Link
 } from "react-router-dom";
 import Login from "./components/Login";
+import Loginp from './pages/Login'
+import User from "./pages/User"
 import { MainPage } from "./components/MainPage";
 import WordSearch from "./components/WordSearch";
 import QuerySearch from "./components/querySearch";
@@ -31,6 +33,8 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login/>} />
+          <Route exact path="/login" element={<Loginp />} />
+          <Route path="/userpage" element={<User />} />
           <Route path="/wordsearch" element={<WordSearch/>} />
           <Route path={`/main`} element={<MainPage />} />
           <Route path="/main2" element={<Home />} />

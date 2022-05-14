@@ -1,0 +1,61 @@
+.SongDetails{
+  position: -webkit-sticky;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: flex-start;
+  position: sticky;
+  top: 90px;
+  width: 550px;
+}
+
+.Image{
+  width: 87%;
+
+}
+.Artist{
+  font-size: 27px;
+  font-weight: bold;
+  font-style: italic;
+  color: #4a331c;
+}
+
+.Name{
+  font-size: 25px;
+  font-weight: bold;
+  color: #000000;
+  display: inline-block;
+  max-width: 500px;
+  align-content: center;
+}
+
+.Pause{
+  font-size:30px;
+  vertical-align: middle;
+  border-radius: 40px;
+  background-color: #C8C8C8;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 50px;
+  outline: none;
+}
+
+.Toggle{
+  background: none;
+  border: none;
+  font-size: 23px;
+  vertical-align: middle;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.Seekbar{
+  width: 480px
+}
+
+.Volume{
+  position: relative;
+  bottom:20px;
+  left: 170px;
+}
