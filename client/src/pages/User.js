@@ -145,7 +145,9 @@ export default function User() {
                 }) => (
                   // write your building UI
                   <div className="hi">
+                  
                     <button
+                    className="spotify-button"
                       style={isDragging ? { color: "red" } : null}
                       onClick={onImageUpload}
                       {...dragProps}
@@ -157,10 +159,11 @@ export default function User() {
                       <div key={index} className="image-item">
                         <img src={image.data_url} alt="" width="100" />
                         <div className="image-item__btn-wrapper">
-                          <button onClick={() => onImageUpdate(index)}>
+
+                          <button className="spotify-button" onClick={() => onImageUpdate(index)}>
                             Update
                           </button>
-                          <button onClick={() => onImageRemove(index)}>
+                          <button className="spotify-button" onClick={() => onImageRemove(index)}>
                             Remove
                           </button>
                         </div>
