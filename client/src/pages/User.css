@@ -18,3 +18,151 @@
   button {
     height: 30px;
   }
+#main {
+  width: 100%;
+  height: 100vh;
+
+  margin-top: -21px;
+  background-color: #ee99ff;
+  background-color: hsla(343, 100%, 80%, 1);
+  background-image: radial-gradient(
+      at 9% 55%,
+      hsla(55, 71%, 64%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 20% 61%, hsla(270, 94%, 79%, 1) 0px, transparent 50%),
+    radial-gradient(at 91% 1%, hsla(172, 92%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 39% 37%, hsla(90, 86%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 90% 18%, hsla(209, 78%, 64%, 1) 0px, transparent 50%),
+    radial-gradient(at 59% 70%, hsla(302, 98%, 79%, 1) 0px, transparent 50%);
+}
+
+#header {
+  position: absolute;
+  width: 240px;
+}
+#header .pro-sidebar {
+  height: 100vh;
+}
+#header .closemenu {
+  color: #000;
+  position: absolute;
+  right: 0;
+  z-index: 9999;
+  line-height: 20px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 22px;
+  top: 55px;
+  cursor: pointer;
+}
+#header .pro-sidebar {
+  width: 100%;
+  min-width: 100%;
+}
+#header .pro-sidebar.collapsed {
+  width: 80px;
+  min-width: 80px;
+}
+#header .pro-sidebar-inner {
+  background-color: white;
+  box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
+}
+#header .pro-sidebar-inner .pro-sidebar-layout {
+  /* overflow-y: hidden; */
+}
+#header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
+  font-size: 20px;
+  padding: 0 20px;
+  color: #000;
+  font-weight: bold;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout ul {
+  padding: 0 5px;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
+  color: #000;
+  margin: 10px 0px;
+  font-weight: bold;
+}
+#header
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper {
+  background-color: #fbf4cd;
+  color: #000;
+  border-radius: 3px;
+}
+#header
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper
+  .pro-item-content {
+  color: #000;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout .active {
+  background-image: linear-gradient(0deg, #bace00 0%, #bbe172 100%);
+}
+#header .logo {
+  padding: 20px;
+}
+
+@media only screen and (max-width: 720px) {
+  html {
+    overflow: hidden;
+  }
+}
+
+.pro-sidebar .pro-menu ul .pro-sub-menu .pro-inner-list-item {
+  position: relative;
+  background-color: hsla(343, 100%, 80%, 1);
+  background-color: #f399ff;
+  background-image: radial-gradient(
+      at 44% 12%,
+      hsla(181, 89%, 61%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 11% 79%, hsla(76, 86%, 64%, 1) 0px, transparent 50%),
+    radial-gradient(at 26% 64%, hsla(53, 69%, 76%, 1) 0px, transparent 50%),
+    radial-gradient(at 20% 36%, hsla(42, 77%, 71%, 1) 0px, transparent 50%),
+    radial-gradient(at 8% 23%, hsla(179, 88%, 65%, 1) 0px, transparent 50%),
+    radial-gradient(at 48% 18%, hsla(170, 80%, 60%, 1) 0px, transparent 50%);
+}
+
+button {
+  box-shadow: inset 0px 1px 0px 0px #ff8fd8;
+  /* background: linear-gradient(to bottom, #fff5ff 5%, #f0c3eb 100%); */
+  background-color: #fff5ff;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: italic;
+  padding: 6px 6px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ebecf5;
+}
+button:hover {
+  background: linear-gradient(to bottom, #f0c3eb 5%, #fff5ff 100%);
+  background-color: #f0c3eb;
+}
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* padding: 8px 35px 8px 20px; */
+  cursor: pointer;
+  text-align: center;
+}
