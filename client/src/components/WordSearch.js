@@ -4,7 +4,7 @@ import Unsplash, { toJson } from "unsplash-js"; //unplash api import
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import MainPage from './MainPage';
-
+import './styling/WordSearch.css';
 
 //import Link, { LinkedComponent } from 'valuelink';
 //import { Input } from 'valuelink/tags';
@@ -153,8 +153,8 @@ class WordSearch extends Component
 
         return (
           <div className="App">
-            <h2>What are You Feeling?</h2>
-            <form onSubmit={this.onSubmit} > 
+            <h1>What are You Feeling?</h1>
+            <form className="word-form" onSubmit={this.onSubmit}  > 
               <div className="form-check">
                 <label className="form-check-label">
                   <input type="checkbox"
