@@ -220,8 +220,8 @@ const Body = (props) => {
                 Search
               </button>
             </form>
-            <button className="button-favorite button" onClick={() => navigate("/favorites")}>
-              Favorites
+            <button className="button-favorite button" onClick={() => navigate("/userpage")}>
+              User
             </button>
           </div>
         {/* from DEMO */}

@@ -1,8 +1,11 @@
 //import useState hook to create menu collapse state
-import React, { useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import ImageUploading from "react-images-uploading";
+import { PhotoComp } from "../components/MainPage";
+//import "./styling/FavoritesPage.css";
 
 //import react pro sidebar components
 import {
@@ -117,6 +120,17 @@ export default function User() {
     });
     return curTracks;
   };
+
+  const getLikedPhotos = () => {
+    const local = localStorage.getItem("favoriteImages"); 
+    if(local.length === 0){
+      return [];
+    } else{
+      return JSON.parse(local);
+    }
+  };
+
+  let data = getLikedPhotos();
 
   return (
     <>
@@ -257,7 +271,23 @@ export default function User() {
         </ProSidebar>
       </div>
       <div id="main">
-        <h1>hi</h1>
+        
+        <div className="favorites-container">
+        
+          <div className="favorites-header-container">
+            <div className="favorites-header">Favorites</div> 
+            <div className="favorites-subtitle">Photos that you have liked.</div>
+          </div>
+
+          <div className="feed">
+            {data.map((photo) => (
+              <div key={photo.id} className="li">
+                <PhotoComp photo={photo} />
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </>
   );
