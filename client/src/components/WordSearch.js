@@ -6,6 +6,8 @@ import axios from 'axios';
 import MainPage from './MainPage';
 import './styling/WordSearch.css';
 
+import '../fonts/CodigraRegular.ttf';
+
 //import Link, { LinkedComponent } from 'valuelink';
 //import { Input } from 'valuelink/tags';
 
@@ -153,7 +155,7 @@ class WordSearch extends Component
 
         return (
           <div className="App">
-            <h1>What are You Feeling?</h1>
+            <h1 className="font-face-cd">What are You Feeling?</h1>
             <form className="word-form" onSubmit={this.onSubmit}  > 
               <div className="form-check">
                 <label className="form-check-label">

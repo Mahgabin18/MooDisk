@@ -1,3 +1,14 @@
+@font-face {
+    font-family: "CodigraRegular";
+    src: url("../../fonts/CodigraRegular.ttf") format("truetype");
+    }
+
+.font-face-cd {
+    font-family: "CodigraRegular";
+    /* border: 5px solid #fa0;     */
+}
+
+
 .App {
     background: rgb(239, 239, 239);
     /* display: flex; */
@@ -23,17 +34,58 @@
 
 .form-check {
     flex-direction: row;
-    background: pink;
-    border: 2px solid #6c4040;
+    /* background: pink; */
+    /* border: 2px solid #6c4040;
     padding: 50px;
     width: 200px;
-    margin: 10px;
+    margin: 10px; */
+    padding-left: 0em;
 }
+
+.form-check .form-check-label {
+    /* display: none; */
+
+    
+    /* dont add this bc it doesnt align everything */
+    border: 2px solid #fe95fa;
+    padding: 50px;
+    width: 250px;
+    margin: 10px;
+
+    font-size: 20px;
+
+    background-color: hsla(343, 100%, 80%, 0.01);
+    background-image: radial-gradient(
+      at 9% 55%,
+      hsla(55, 71%, 64%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 20% 61%, hsla(270, 94%, 79%, 1) 0px, transparent 50%),
+    radial-gradient(at 91% 1%, hsla(172, 92%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 39% 37%, hsla(90, 86%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 90% 18%, hsla(209, 78%, 64%, 1) 0px, transparent 50%),
+    radial-gradient(at 59% 70%, #fe95fa 0px, transparent 50%);
+    
+    transition: all 0.3s ease-in;
+}
+
+.form-check 
+.form-check-label:hover 
+{
+    background-color: hsla(343, 100%, 80%, 1);
+    cursor: pointer;
+    font-size: 25px;
+}
+
+/* .form-check-input:checked + .form-check-label{
+    background: blue !important;
+} */
  
 .form-group .btn 
 {
     flex-direction: column;
-    width: 200px;
+    width: 250px;
+    margin: 10px;
     align-items: center;
 }
 
