@@ -17,9 +17,11 @@
   }
 #main {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
 
-  margin-top: -21px;
+  margin-left: 240px;
+
+  /* margin-top: -21px; */
   background-color: #ee99ff;
   background-color: hsla(343, 100%, 80%, 1);
   background-image: radial-gradient(
@@ -35,7 +37,7 @@
 }
 
 #header {
-  position: absolute;
+  position: fixed;
   width: 240px;
 }
 #header .pro-sidebar {
@@ -162,4 +164,12 @@
   /* padding: 8px 35px 8px 20px; */
   cursor: pointer;
   text-align: center;
+}
+
+h1 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 50px;
+  font-style: italic;
+  border: 0px solid #6c4040;
 }

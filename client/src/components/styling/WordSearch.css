@@ -5,6 +5,11 @@
 
 .font-face-cd {
     font-family: "CodigraRegular";
+    margin: 20px;
+    padding: 80px;
+    font-size: 50px;
+    font-style: italic;
+    border: 1px solid #6c4040;
     /* border: 5px solid #fa0;     */
 }
 
@@ -88,11 +93,11 @@
     margin: 10px;
     align-items: center;
 }
-
+/* 
 h1 {
     margin: 20px;
     padding: 80px;
     font-size: 50px;
     font-style: italic;
     border: 1px solid #6c4040;
-}
+} */
