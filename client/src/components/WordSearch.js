@@ -4,9 +4,10 @@ import Unsplash, { toJson } from "unsplash-js"; //unplash api import
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import MainPage from './MainPage';
-import './styling/WordSearch.css';
 
-import '../fonts/CodigraRegular.ttf';
+import './styling/WordSearch.css';
+import CodigraRegular from './styling/fonts/CodigraRegular.ttf'; 
+
 
 //import Link, { LinkedComponent } from 'valuelink';
 //import { Input } from 'valuelink/tags';
@@ -14,7 +15,7 @@ import '../fonts/CodigraRegular.ttf';
 
 //const valueArray = []; //initialize empty array
 
-
+console.log(CodigraRegular);
 
 //export default function WordSearch() 
 class WordSearch extends Component
@@ -38,14 +39,15 @@ class WordSearch extends Component
         isHappy: false,
         isSad: false,
         isMad: false,
-        isExcited: false, 
+        isBittersweet: false, 
+        isPainful: false,
+        isPeaceful: false,
+        isTragic: false,
+        isBeautiful: false,
+        isBizarre: false,
+        isNightmare: false,
         isLonely: false,
         isDisgust: false,
-        isPeaceful: false,
-        isScared: false,
-        isCrazy: false,
-        isHungry: false,
-        isEnergetic: false,
     };
     // 2) React Checkboxes define onChange Methods 
      onChangeHappy = (event) => {
@@ -66,20 +68,14 @@ class WordSearch extends Component
         }));
      }
      
-     onChangeExcited = () => {
+     onChangeBittersweet = () => {
         this.setState(initialState => ({
-          isExcited: !initialState.isExcited,
+          isBittersweet: !initialState.isBittersweet,
         }));
      }
-     onChangeLonely = () => {
+     onChangePainful = () => {
         this.setState(initialState => ({
-          isLonely: !initialState.isLonely,
-        }));
-
-     }
-     onChangeDisgust = () => {
-        this.setState(initialState => ({
-          isDisgust: !initialState.isDisgust,
+          isPainful: !initialState.isPainful,
         }));
 
      }
@@ -89,30 +85,41 @@ class WordSearch extends Component
         }));
 
      }
-     onChangeScared = () => {
+     onChangeTragic = () => {
         this.setState(initialState => ({
-          isScared: !initialState.isScared,
+          isTragic: !initialState.isTragic,
         }));
 
      }
-     onChangeCrazy = () => {
+     onChangeBeautiful = () => {
         this.setState(initialState => ({
-          isCrazy: !initialState.isCrazy,
+          isBeautiful: !initialState.isBeautiful,
         }));
 
      }
-     onChangeHungry = () => {
+     onChangeBizarre = () => {
         this.setState(initialState => ({
-          isHungry: !initialState.isHungry,
+          isBizarre: !initialState.isBizarre,
         }));
 
      }
-     onChangeEnergetic = () => {
+     onChangeNightmare = () => {
         this.setState(initialState => ({
-          isEnergetic: !initialState.isEnergetic,
+          isNightmare: !initialState.isNightmare,
         }));
 
      }
+     onChangeLonely = () => {
+        this.setState(initialState => ({
+          isLonely: !initialState.isLonely,
+        }));
+        
+     }
+     onChangeDisgust = () => {
+      this.setState(initialState => ({
+        isDisgust: !initialState.isDisgust,
+      }));
+    }
 
       HandleClick = () =>{ 
       let navigate = useNavigate();
@@ -155,7 +162,7 @@ class WordSearch extends Component
 
         return (
           <div className="App">
-            <h1 className="font-face-cd">What are You Feeling?</h1>
+            <h1 className="font-face-cd">pick a mood</h1>
             <form className="word-form" onSubmit={this.onSubmit}  > 
               <div className="form-check">
                 <label className="form-check-label">
@@ -192,12 +199,78 @@ class WordSearch extends Component
               <div className="form-check">
                 <label className="form-check-label">
                   <input type="checkbox"
-                    checked={this.state.isExcited}
-                    onChange={this.onChangeExcited}
+                    checked={this.state.isBittersweet}
+                    onChange={this.onChangeBittersweet}
                     className="form-check-input"
                     // value = {wordInfo.excited}
                   />
-                  Excited
+                  Bittersweet
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isPainful}
+                    onChange={this.onChangePainful}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Painful
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isPeaceful}
+                    onChange={this.onChangePeaceful}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Peaceful
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isTragic}
+                    onChange={this.onChangeTragic}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Tragic
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isBeautiful}
+                    onChange={this.onChangeBeautiful}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Beautiful
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isisBizarre}
+                    onChange={this.onChangeBizarre}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Bizarre
+                </label>
+              </div>
+              <div className="form-check">
+                <label className="form-check-label">
+                  <input type="checkbox"
+                    checked={this.state.isNightmare}
+                    onChange={this.onChangeNightmare}
+                    className="form-check-input"
+                    // value = {wordInfo.lonely}
+                  />
+                  Nightmare
                 </label>
               </div>
               <div className="form-check">
@@ -220,61 +293,6 @@ class WordSearch extends Component
                     // value = {wordInfo.lonely}
                   />
                   Disgust
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="checkbox"
-                    checked={this.state.isPeaceful}
-                    onChange={this.onChangePeaceful}
-                    className="form-check-input"
-                    // value = {wordInfo.lonely}
-                  />
-                  Peaceful
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="checkbox"
-                    checked={this.state.isScared}
-                    onChange={this.onChangeScared}
-                    className="form-check-input"
-                    // value = {wordInfo.lonely}
-                  />
-                  Scared
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="checkbox"
-                    checked={this.state.isCrazy}
-                    onChange={this.onChangeCrazy}
-                    className="form-check-input"
-                    // value = {wordInfo.lonely}
-                  />
-                  Crazy
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="checkbox"
-                    checked={this.state.isHungry}
-                    onChange={this.onChangeHungry}
-                    className="form-check-input"
-                    // value = {wordInfo.lonely}
-                  />
-                  Hungry
-                </label>
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input type="checkbox"
-                    checked={this.state.isEnergetic}
-                    onChange={this.onChangeEnergetic}
-                    className="form-check-input"
-                    // value = {wordInfo.lonely}
-                  />
-                  Energetic
                 </label>
               </div>
               <div className="form-group">

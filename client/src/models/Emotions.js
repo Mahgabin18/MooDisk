@@ -2,14 +2,15 @@ const Emotions = {
   happy: "happy",
   sad: "sad",
   mad: "mad",
-  excited: "excited",
-  lonely: "lonely",
-  disgust: "disgust",
+  bittersweet: "bitter sweet",
+  painful: "painful",
   peaceful: "peaceful",
-  scared: "scared",
-  crazy: "crazy",
-  hungry: "hungry",
-  energetic: "energetic"
+  tragic: "tragic",
+  beautiful: "beautiful",
+  bizarre: "bizarre",
+  nightmare: "nightmare",
+  lonely: "lonely",
+  disgust: "disgust"
 }
 
 export default Emotions;

@@ -258,22 +258,24 @@ const MainPage = () => {
         wordArr.push(Emotions.sad);
       else if (element.isMad)
         wordArr.push(Emotions.mad);
-      else if (element.isExcited)
-        wordArr.push(Emotions.excited);
+      else if (element.isBittersweet)
+        wordArr.push(Emotions.bittersweet);
+      else if (element.isPainful)
+        wordArr.push(Emotions.painful);
+      else if (element.isPeaceful)
+        wordArr.push(Emotions.peaceful);
+      else if (element.isTragic)
+        wordArr.push(Emotions.tragic);
+      else if (element.isBeautiful)
+        wordArr.push(Emotions.beautiful);
+      else if (element.isBizarre)
+        wordArr.push(Emotions.bizarre);
+      else if (element.isNightmare)
+        wordArr.push(Emotions.nightmare);
       else if (element.isLonely)
         wordArr.push(Emotions.lonely);
       else if (element.isDisgust)
         wordArr.push(Emotions.disgust);
-      else if (element.isPeaceful)
-        wordArr.push(Emotions.peaceful);
-      else if (element.isScared)
-        wordArr.push(Emotions.scared);
-      else if (element.isCrazy)
-        wordArr.push(Emotions.crazy);
-      else if (element.isHungry)
-        wordArr.push(Emotions.hungry);
-      else if (element.isEnergetic)
-        wordArr.push(Emotions.energetic);
     });
 
     changeWords(wordArr);
