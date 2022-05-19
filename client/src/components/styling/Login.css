@@ -1,0 +1,66 @@
+.reggg {
+    text-align: center;
+    padding-top: 7ex;
+    padding-bottom: 9ex;
+}
+
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color:rgb(240, 157, 211);
+    border: 20px solid rgb(26, 24, 24);
+    border-radius: 29px;
+
+}
+
+.m {
+    background-color: rgb(255, 198, 247); 
+    color: black; 
+    border: 2px solid #ff00c8;
+    border-radius: 25%;
+    width: 10ex;
+    height: 5ex;
+    margin-top: 4ex;
+    margin-bottom: 4ex;
+}
+
+.m:hover {
+    background-color: #ff1b89;
+    color: rgb(255, 157, 239);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19); 
+}
+
+.v {
+    background-color: rgb(255, 176, 233); 
+    color: black; 
+    border: 2px solid #ff44b1;
+    border-radius: 25%;
+    
+    width:auto;
+    float:left;
+    
+}
+
+.z {
+    background-color: rgb(255, 176, 233); 
+    color: black; 
+    border: 2px solid #ff44b1;
+    border-radius: 25%;
+
+     
+    width:auto;
+    float: right;
+    
+}
+
+.suncloud {
+    width: 29ex;
+    height: 29ex;
+    position: absolute; top: 0px; right: 0px;
+    padding-right: 4ex;
+    width: 50ex;
+    height: 50ex;
+}
+
+

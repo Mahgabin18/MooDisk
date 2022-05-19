@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import "./Login.css"
 
 
 function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  useEffect(() => {
+    document.body.style.backgroundColor =" #f399ff";
+  })
   
   async function loginUser(event){
     event.preventDefault()
@@ -20,31 +24,37 @@ function App() {
     const data = await response.json()
     if (data.user) {
 			localStorage.setItem('token', data.user)
-			alert('Login successful')
-			window.location.href = '/dashboard'
+			window.location.href = '/userpage'
 		} else {
 			alert('Please check your username and password')
 		}
   }
   return (
-    <div>
-      <h1>Login</h1>   
+    <div className="allz">
+    
+      <h1>Welcome Back!</h1>   
+      <div className="loginz">
       <form onSubmit={loginUser}>
-        <input
+        <input id="textboxid"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         type="email"
         placeholder="Email"
          /><br/>
-        <input
+        <input id="textboxid"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         type="password"
         placeholder="Password"
          /><br/>
-         <input type="submit" value="Login" />
+         <div className="ns">
+         <input type="submit" value="Login" className="n"/>
+         </div>
       </form>
+      <img class="cloud"src={require("../images/cloud.png") }/>
+      <img class="sun"src={require("../images/sun.png") }/>
       
+  </div>
      </div>
   );
 }

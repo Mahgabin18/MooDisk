@@ -1,8 +1,8 @@
 //import logo from './logo.svg';
 import React from "react";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-  
+import "./styling/Login.css"
 
 function Login() {
   const navigate = useNavigate();
@@ -10,7 +10,9 @@ function Login() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-  
+  useEffect(() => {
+    document.body.style.backgroundColor =" #f399ff";
+  })
   async function registerUser(event){
     event.preventDefault()
     const response = await fetch('http://localhost:1337/api/register',{
@@ -26,39 +28,45 @@ function Login() {
     })
     const data = await response.json()
     console.log(data)
+    window.location.href = '/wordsearch'
+    
   }
+
+  
   return (
     <div>
-      <h1>Register</h1>   
+      <h1>New here?</h1>   
+      <div className="reggg">
       <form onSubmit={registerUser}>
-        <input
+        <input id="textboxid"
         value={name}
         onChange={(e) => setName(e.target.value)}
         type="text"
         placeholder="Name"
          /><br/>
-        <input
+        <input id="textboxid"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         type="email"
         placeholder="Email"
          /><br/>
-        <input
+        <input id="textboxid"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         type="password"
         placeholder="Password"
          /><br/>
-         <input type="submit" value="Register" />
+         <input type="submit" value="Register" className="m"/>
       </form>
-        
+      <img class="suncloud"src={require("../images/suncloud.png") }/>
       {/* BUTTON TO GO NAVIGATE TO THE WORD SEARCH PAGE & MAIN*/}
-      <p>
-        <button onClick={() => navigate("/wordsearch")}>Go to Word Search</button>
+      <p >
+        <button className="v" onClick={() => navigate("/login") }>Login</button>
       </p>
       <p>
-        <button onClick={() => navigate("/main")}>Go to MAIN</button>
+        <button className="z" onClick={() => navigate("/userpage")}>User Page</button>
       </p>
+     </div>
      </div>
   );
 }

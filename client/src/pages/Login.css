@@ -1,0 +1,57 @@
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color:rgb(240, 157, 211);
+    border: 20px solid rgb(26, 24, 24);
+    border-radius: 29px;
+}
+
+.loginz {
+    text-align: center;
+    padding-top: 20ex;
+}
+
+.ns {
+    padding-top: 2ex;
+}
+
+.n {
+    background-color: rgb(255, 198, 247); 
+    color: black; 
+    border: 2px solid #ff00c8;
+    border-radius: 25%;
+    width: 10ex;
+    height: 5ex;
+}
+
+.n:hover {
+    background-color: #ff1b89;
+    color: rgb(255, 157, 239);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#textboxid {
+    border-radius: 15%;
+    height: 5ex;
+    margin-bottom: 40px;
+    width: 40ex;
+    height: 6ex;
+
+}
+
+.cloud 
+{
+    width: 29ex;
+    height: 29ex;
+    position: absolute; bottom: 0px; right: 0px;
+}
+
+.sun {
+    width: 29ex;
+    height: 29ex;
+    position: absolute; top: 0px; left: 0px;
+    padding-top: 8ex;
+    width: 50ex;
+    height: 50ex;
+}
+
